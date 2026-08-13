@@ -1,0 +1,9 @@
+{
+  "name": "pedro-luis-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node server.mjs",
+    "check": "node --check js/main.js && node --check server.mjs"
+  }
+}

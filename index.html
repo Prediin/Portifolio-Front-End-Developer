@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="pt-BR" data-mode="dev">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Portfólio de Pedro Luís Bezerra Lima — Desenvolvedor Front-End em formação, Técnico em Informática e criativo multidisciplinar." />
+  <meta name="theme-color" content="#0b0d10" />
+  <title>Pedro Luís — Front-End Developer & Creative Technologist</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot__inner">
+      <span class="boot__label">PL // PORTFOLIO.OS</span>
+      <div class="boot__track"><span class="boot__bar"></span></div>
+      <span class="boot__status">carregando interface criativa...</span>
+    </div>
+  </div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="site-header" id="topo">
+    <a class="brand magnetic" href="#topo" aria-label="Ir para o topo">
+      <span class="brand__mark">PL</span>
+      <span class="brand__copy">Pedro Luís<br><small>Front-End / Creative</small></span>
+    </a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#competencias">Competências</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="mode-switch magnetic" id="modeSwitch" type="button" aria-pressed="false" aria-label="Alternar entre modo desenvolvedor e criativo">
+        <span class="mode-switch__dot"></span>
+        <span id="modeLabel">DEV</span>
+      </button>
+      <button class="command-button magnetic" id="commandButton" type="button" aria-haspopup="dialog" aria-controls="commandPalette">
+        <span>Ir para</span><kbd>Ctrl K</kbd>
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero section-shell" aria-labelledby="heroTitle">
+      <div class="hero__copy reveal">
+        <div class="eyebrow">
+          <span class="status-dot" aria-hidden="true"></span>
+          Aberto a oportunidades Front-End
+        </div>
+
+        <h1 id="heroTitle">
+          <span class="hero__kicker">Pedro Luís</span>
+          <span class="hero__statement">Eu transformo <em>código</em> em experiências que têm <strong>presença.</strong></span>
+        </h1>
+
+        <p class="hero__intro">
+          Desenvolvedor Front-End em formação, Técnico em Informática e criativo multidisciplinar. Minha direção é unir interfaces sólidas, movimento, narrativa visual e atenção aos detalhes para construir produtos web memoráveis.
+        </p>
+
+        <div class="hero__actions">
+          <a class="button button--primary magnetic" href="#trabalhos"><span>Explorar trabalhos</span><span aria-hidden="true">↘</span></a>
+          <a class="button button--ghost magnetic" href="#competencias"><span>Ver stack atual</span><span aria-hidden="true">→</span></a>
+        </div>
+
+        <div class="hero__meta" aria-label="Resumo profissional">
+          <div><strong>44%</strong><span>Curso Front-End EBAC</span></div>
+          <div><strong>15</strong><span>Módulos concluídos nesta etapa</span></div>
+          <div><strong>2024</strong><span>Técnico em Informática</span></div>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal" data-delay="120">
+        <div class="signal-card tilt" id="signalCard">
+          <canvas id="signalCanvas" width="760" height="900" aria-label="Visual generativo decorativo"></canvas>
+          <div class="signal-card__hud">
+            <span>CREATIVE SIGNAL</span>
+            <span id="signalTime">00:00:00</span>
+          </div>
+          <div class="signal-card__caption">
+            <span class="mono">01 / INTERFACE</span>
+            <p>Entre lógica e linguagem visual.</p>
+          </div>
+        </div>
+
+        <div class="floating-note floating-note--a">HTML / CSS / JS</div>
+        <div class="floating-note floating-note--b">motion + interaction</div>
+      </div>
+    </section>
+
+    <section class="manifesto section-shell reveal" aria-label="Manifesto">
+      <div class="manifesto__index mono">[ 01 ]</div>
+      <p>
+        Quero que uma empresa veja meu trabalho e entenda duas coisas em poucos segundos: <strong>eu sei construir para a web</strong> e <strong>eu tenho repertório visual para fazer isso de um jeito próprio.</strong>
+      </p>
+      <div class="manifesto__stamp">BUILD × IMAGINE</div>
+    </section>
+
+    <section class="work section-shell" id="trabalhos" aria-labelledby="workTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">02 / SELECTED WORK</span>
+          <h2 id="workTitle">Projetos que contam <em>como você pensa.</em></h2>
+        </div>
+        <p>Abaixo estão projetos que foram criados ao longo do tempo do curso e outros projetos para pratica.</p>
+      </header>
+
+      <div class="project-toolbar reveal" role="group" aria-label="Filtrar projetos">
+        <button class="filter-chip is-active" data-filter="all" type="button">Todos</button>
+        <button class="filter-chip" data-filter="frontend" type="button">Front-End</button>
+        <button class="filter-chip" data-filter="javascript" type="button">JavaScript</button>
+        <button class="filter-chip" data-filter="creative" type="button">Creative</button>
+        <span class="project-count mono" id="projectCount">06 projetos</span>
+      </div>
+
+      <div class="project-grid" id="projectGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="skills section-shell" id="competencias" aria-labelledby="skillsTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">03 / TOOLKIT</span>
+          <h2 id="skillsTitle">Base técnica <em>já conquistada.</em></h2>
+        </div>
+        <p>Sem barras de “95% especialista”. Aqui o portfólio mostra o que você efetivamente estudou e praticou até esta etapa do curso.</p>
+      </header>
+
+      <div class="skills-layout">
+        <div class="skill-board reveal">
+          <article class="skill-cluster">
+            <span class="skill-cluster__number mono">A01</span>
+            <h3>Core Web</h3>
+            <div class="skill-tags">
+              <span>HTML5 semântico</span><span>Acessibilidade</span><span>CSS3</span><span>JavaScript</span><span>DevTools</span><span>VS Code</span>
+            </div>
+          </article>
+
+          <article class="skill-cluster">
+            <span class="skill-cluster__number mono">A02</span>
+            <h3>JavaScript & Browser</h3>
+            <div class="skill-tags">
+              <span>DOM</span><span>Eventos</span><span>Arrays</span><span>Funções</span><span>POO</span><span>Fetch API</span><span>Promises</span><span>Async / Await</span><span>Web Storage</span>
+            </div>
+          </article>
+
+          <article class="skill-cluster">
+            <span class="skill-cluster__number mono">A03</span>
+            <h3>CSS & Layout</h3>
+            <div class="skill-tags">
+              <span>Responsive Design</span><span>Media Queries</span><span>Flexbox</span><span>CSS Grid</span><span>BEM</span><span>Sass</span><span>Bootstrap</span><span>Tailwind CSS</span>
+            </div>
+          </article>
+
+          <article class="skill-cluster">
+            <span class="skill-cluster__number mono">A04</span>
+            <h3>Workflow & Web</h3>
+            <div class="skill-tags">
+              <span>Git</span><span>GitHub</span><span>Branches</span><span>Pull Requests</span><span>Merge</span><span>HTTP / HTTPS</span><span>Client–Server</span><span>Refatoração</span>
+            </div>
+          </article>
+        </div>
+
+        <aside class="learning-card reveal" data-delay="100">
+          <div class="learning-card__top">
+            <span class="mono">EBAC / FRONT-END</span>
+            <strong>44%</strong>
+          </div>
+          <div class="course-meter" role="progressbar" aria-label="Progresso no curso de Desenvolvedor Front-End da EBAC" aria-valuemin="0" aria-valuemax="100" aria-valuenow="44">
+            <span style="--progress:44%"></span>
+          </div>
+          <p>Em formação contínua. O que já foi concluído aparece abaixo como trilha verificável, não como promessa.</p>
+          <button class="text-button" id="toggleModules" type="button" aria-expanded="false" aria-controls="moduleList">Ver os 15 módulos concluídos <span>↓</span></button>
+          <ol class="module-list" id="moduleList" hidden>
+            <li><span>01</span>Fundamentos do desenvolvimento web</li>
+            <li><span>02</span>HTML5 semântico e acessível</li>
+            <li><span>03</span>CSS3 e boas práticas de estilização</li>
+            <li><span>04</span>Fundamentos de JavaScript</li>
+            <li><span>05</span>Git e GitHub</li>
+            <li><span>06</span>Algoritmos e estruturas de controle</li>
+            <li><span>07</span>Programação orientada a objetos</li>
+            <li><span>08</span>DOM, eventos, Fetch e Web Storage</li>
+            <li><span>09</span>HTTP, HTTPS e ciclo de requisições</li>
+            <li><span>10</span>JavaScript moderno, assíncrono e funcional</li>
+            <li><span>11</span>Responsividade, Flexbox e Grid</li>
+            <li><span>12</span>Organização CSS com BEM</li>
+            <li><span>13</span>Sass e arquitetura de estilos</li>
+            <li><span>14</span>Bootstrap responsivo e customização</li>
+            <li><span>15</span>Tailwind CSS e abordagem mobile first</li>
+          </ol>
+        </aside>
+      </div>
+
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee__track">
+          <span>HTML5</span><i>✦</i><span>CSS3</span><i>✦</i><span>JAVASCRIPT</span><i>✦</i><span>DOM</span><i>✦</i><span>GIT</span><i>✦</i><span>RESPONSIVE</span><i>✦</i><span>SASS</span><i>✦</i><span>BOOTSTRAP</span><i>✦</i><span>TAILWIND</span><i>✦</i>
+          <span>HTML5</span><i>✦</i><span>CSS3</span><i>✦</i><span>JAVASCRIPT</span><i>✦</i><span>DOM</span><i>✦</i><span>GIT</span><i>✦</i><span>RESPONSIVE</span><i>✦</i><span>SASS</span><i>✦</i><span>BOOTSTRAP</span><i>✦</i><span>TAILWIND</span><i>✦</i>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab section-shell" id="lab" aria-labelledby="labTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">04 / CREATIVE LAB</span>
+          <h2 id="labTitle">Não só dizer. <em>Deixar mexer.</em></h2>
+        </div>
+        <p>Um pequeno playground de DOM mostra interação de verdade e reforça a ideia de que interface é comportamento — não apenas aparência.</p>
+      </header>
+
+      <div class="lab-console reveal">
+        <div class="lab-console__code" aria-label="Exemplo de código JavaScript">
+          <div class="window-bar"><span></span><span></span><span></span><em>creative-lab.js</em></div>
+          <pre><code><span class="code-dim">const</span> poster = document.<span class="code-accent">querySelector</span>(<span class="code-string">'.poster'</span>);
+
+controls.<span class="code-accent">forEach</span>((control) =&gt; {
+  control.<span class="code-accent">addEventListener</span>(<span class="code-string">'input'</span>, render);
+});
+
+<span class="code-dim">function</span> <span class="code-accent">render</span>() {
+  poster.style.setProperty(<span class="code-string">'--shape'</span>, shape.value);
+  poster.style.setProperty(<span class="code-string">'--blur'</span>, `${blur.value}px`);
+}</code></pre>
+          <div class="lab-console__status mono"><span></span> DOM CONNECTED</div>
+        </div>
+
+        <div class="lab-console__preview">
+          <div class="poster" id="poster">
+            <span class="poster__edition mono">PL / 001</span>
+            <div class="poster__orb"></div>
+            <p>CODE<br><em>MEETS</em><br>ART</p>
+            <span class="poster__caption">interactive poster / browser-native</span>
+          </div>
+          <div class="lab-controls">
+            <label>Shape<input id="shapeControl" type="range" min="0" max="50" value="18" /></label>
+            <label>Blur<input id="blurControl" type="range" min="0" max="24" value="2" /></label>
+            <label>Energy<input id="energyControl" type="range" min="1" max="12" value="6" /></label>
+            <button class="button button--small" id="randomizePoster" type="button">Randomizar composição</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section-shell" id="sobre" aria-labelledby="aboutTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">05 / ABOUT</span>
+          <h2 id="aboutTitle">Tecnologia de um lado. <em>Repertório do outro.</em></h2>
+        </div>
+      </header>
+
+      <div class="about-grid">
+        <figure class="portrait-frame reveal tilt">
+          <img src="./assets/profile.jpeg" alt="Pedro Luís Bezerra Lima" width="900" height="1100" />
+          <figcaption><span class="mono">SUBSTITUIR: assets/profile.jpg</span><span>retrato / bastidores / processo</span></figcaption>
+        </figure>
+
+        <div class="about-copy reveal" data-delay="80">
+          <p class="about-copy__lead">Sou <strong>Pedro Luís Bezerra Lima</strong>, Técnico em Informática e estudante de Desenvolvimento Front-End. Programação é parte de um repertório maior que também passa por edição de vídeo, ilustração digital e manual, animação, cinema, design e fotografia.</p>
+          <p>Essa combinação muda a forma como observo uma interface: não penso apenas em componentes. Penso em ritmo, enquadramento, hierarquia, contraste, transição, intenção e na sensação que fica depois do clique.</p>
+          <p>Hoje meu foco é consolidar uma base técnica forte em Front-End, construir projetos reais e evoluir para experiências cada vez mais expressivas, acessíveis e bem arquitetadas.</p>
+
+          <div class="about-facts">
+            <div><span class="mono">BASE</span><strong>Parnaguá, Piauí — Brasil</strong></div>
+            <div><span class="mono">FORMAÇÃO</span><strong>Técnico em Informática</strong></div>
+            <div><span class="mono">IDIOMAS</span><strong>PT nativo · EN médio-avançado · ES médio</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline section-shell" aria-labelledby="timelineTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">06 / JOURNEY</span>
+          <h2 id="timelineTitle">Experiência que soma <em>contexto humano.</em></h2>
+        </div>
+      </header>
+
+      <div class="timeline-list">
+        <article class="timeline-item reveal">
+          <time>2025</time>
+          <div><span class="timeline-item__type mono">EXPERIÊNCIA</span><h3>World Cel</h3><p>Atuação com atendimento ao cliente, suporte técnico em aparelhos celulares, edição e produção audiovisual e venda de produtos e acessórios tecnológicos.</p></div>
+          <span class="timeline-item__aside">técnica + comunicação + cliente</span>
+        </article>
+        <article class="timeline-item reveal">
+          <time>2024</time>
+          <div><span class="timeline-item__type mono">ENSINO / COMUNIDADE</span><h3>Minicurso de Cyber Segurança</h3><p>Ministrante e organizador de aulas introdutórias de segurança digital voltadas à proteção de empresas e instituições da região de Corrente, PI.</p></div>
+          <span class="timeline-item__aside">organização + didática + segurança</span>
+        </article>
+        <article class="timeline-item reveal">
+          <time>2024</time>
+          <div><span class="timeline-item__type mono">FORMAÇÃO</span><h3>Ensino Médio integrado ao Técnico em Informática</h3><p>Unidade Escolar Dr. Dionísio Rodrigues Nogueira. Base técnica em informática, lógica de programação, sistemas, hardware e redes.</p></div>
+          <span class="timeline-item__aside">fundação técnica</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="creative section-shell" aria-labelledby="creativeTitle">
+      <header class="section-heading reveal">
+        <div>
+          <span class="section-heading__index mono">07 / OFF-SCREEN</span>
+          <h2 id="creativeTitle">O que alimenta <em>meu olhar.</em></h2>
+        </div>
+        <p>Reserve este espaço para trabalhos autorais que mostrem personalidade além do código. Não precisa parecer “corporativo”; precisa parecer seu.</p>
+      </header>
+
+      <div class="contact-sheet reveal">
+        <article class="contact-frame"><div class="contact-frame__media"><span>ADICIONE<br>ILUSTRAÇÃO</span></div><footer><b>01</b><span>illustration / sketch</span></footer></article>
+        <article class="contact-frame contact-frame--wide"><div class="contact-frame__media"><span>ADICIONE<br>MOTION / VÍDEO</span></div><footer><b>02</b><span>motion / editing</span></footer></article>
+        <article class="contact-frame"><div class="contact-frame__media"><span>ADICIONE<br>FOTOGRAFIA</span></div><footer><b>03</b><span>photo / composition</span></footer></article>
+        <article class="contact-frame"><div class="contact-frame__media"><span>ADICIONE<br>PROCESSO</span></div><footer><b>04</b><span>behind the scenes</span></footer></article>
+      </div>
+    </section>
+
+    <section class="contact section-shell" id="contato" aria-labelledby="contactTitle">
+      <div class="contact__signal reveal" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="contact__copy reveal">
+        <span class="section-heading__index mono">08 / CONTACT</span>
+        <h2 id="contactTitle">Vamos criar algo que <em>mereça ser lembrado?</em></h2>
+        <p>Estou construindo minha carreira em Front-End e procuro oportunidades onde eu possa aprender rápido, contribuir de verdade e transformar atenção aos detalhes em produto.</p>
+        <a class="contact-email magnetic" href="mailto:daxstudios.comissions@gmail.com">daxstudios.comissions@gmail.com <span>↗</span></a>
+        <div class="contact-links">
+          <a href="#" data-placeholder-link="linkedin">LinkedIn <span>↗</span></a>
+          <a href="#" data-placeholder-link="github">GitHub <span>↗</span></a>
+          <a href="#" data-placeholder-link="cv">Currículo PDF <span>↓</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer section-shell">
+    <p>© <span id="year"></span> Pedro Luís Bezerra Lima.</p>
+    <p class="mono">DESIGNED + CODED WITH HTML / CSS / JAVASCRIPT</p>
+    <a href="#topo">Voltar ao topo ↑</a>
+  </footer>
+
+  <dialog class="command-palette" id="commandPalette" aria-labelledby="commandTitle">
+    <div class="command-palette__panel">
+      <header><span id="commandTitle">Navegação rápida</span><button type="button" id="closeCommand" aria-label="Fechar">ESC</button></header>
+      <input id="commandSearch" type="search" placeholder="Digite: projetos, skills, contato..." autocomplete="off" />
+      <div class="command-list" id="commandList"></div>
+      <footer><span>↑↓ navegar</span><span>Enter abrir</span><span>Esc fechar</span></footer>
+    </div>
+  </dialog>
+
+  <dialog class="project-modal" id="projectModal" aria-labelledby="projectModalTitle">
+    <button class="project-modal__close" id="closeProjectModal" type="button" aria-label="Fechar projeto">×</button>
+    <div id="projectModalContent"></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="cursor" id="cursor" aria-hidden="true"><span></span></div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
