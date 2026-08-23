@@ -1,240 +1,149 @@
-# Pedro Luís — Portfolio Front-End / Creative
+# Pedro Luís — Portfólio React
 
-Portfólio autoral em HTML, CSS e JavaScript puro, criado para apresentar **Pedro Luís Bezerra Lima** como Desenvolvedor Front-End em formação com repertório criativo multidisciplinar.
+SPA responsiva em React + Vite criada para apresentar Pedro Luís Bezerra Lima como Desenvolvedor Front-End com repertório criativo multidisciplinar.
 
-## Conceito visual
-
-**Creative Signal / Digital Atelier**: uma identidade editorial e cinematográfica que combina:
-
-- fundo grafite quase preto;
-- branco-papel para contraste e legibilidade;
-- azul elétrico no modo **DEV**;
-- coral no modo **ART**;
-- verde-lima/ciano como sinal de energia e interação;
-- grids, contact sheets e marcações de frame como referência a design, fotografia, vídeo e processo criativo.
-
-A ideia não é parecer apenas um “template de programador”. O site comunica duas dimensões: **construção técnica** e **direção visual**.
-
-## O que já está implementado
-
-- Hero animado com Canvas generativo.
-- Modo **DEV / ART** que muda o sotaque visual do site.
-- Navegação responsiva e barra de progresso de rolagem.
-- Command Palette com `Ctrl + K`.
-- Projetos renderizados via JavaScript e filtros por categoria.
-- Modal de estudo de caso para cada projeto.
-- Seção de competências baseada nos 15 módulos fornecidos da EBAC.
-- Indicador de progresso atual do curso: **44%**.
-- Playground interativo de DOM (“Creative Lab”).
-- Timeline de experiência/formação.
-- Área de fotografia, ilustração, vídeo/motion e processo criativo.
-- Animações por `IntersectionObserver`.
-- Tilt, cursor customizado e botões magnéticos em dispositivos compatíveis.
-- Suporte a `prefers-reduced-motion`.
-- Layout adaptado para desktop, tablet e celular.
-- Sem frameworks e sem dependências de runtime.
-
-## Como executar
-
-Na pasta do projeto:
+## Rodar localmente
 
 ```bash
+npm install
 npm run dev
 ```
 
-Abra:
-
-```text
-http://127.0.0.1:4173
-```
-
-Verificar sintaxe:
+Build de produção:
 
 ```bash
-npm run check
+npm run build
+npm run preview
 ```
 
-## 1. Adicionar sua foto
+## Onde editar suas informações
 
-Coloque uma imagem em:
+A maior parte do conteúdo fica em:
 
 ```text
-assets/profile.jpg
+src/data/portfolio.js
 ```
 
-No `index.html`, procure:
+Altere ali:
 
-```html
-<img src="./assets/profile-placeholder.svg" ...>
-```
+- nome e descrição;
+- e-mail;
+- progresso da formação;
+- projetos destacados;
+- competências;
+- trajetória;
+- blocos do arquivo criativo.
 
-e substitua por:
+## Adicionar sua foto
 
-```html
-<img src="./assets/profile.jpg" alt="Pedro Luís Bezerra Lima" ...>
-```
-
-Prefira um retrato vertical com boa luz e fundo simples ou uma foto com direção artística coerente com o site.
-
-## 2. Adicionar projetos reais
-
-Abra:
+Substitua:
 
 ```text
-js/main.js
+public/profile-placeholder.svg
 ```
 
-No começo existe:
+por uma imagem sua, por exemplo:
 
-```js
-const projects = [ ... ];
+```text
+public/profile.jpg
 ```
 
-Cada item possui:
+Depois, em `src/App.jsx`, troque:
 
-```js
-{
-  id: "p01",
-  number: "01",
-  title: "Nome do projeto",
-  category: "frontend",
-  categoryLabel: "Front-End",
-  year: "2026",
-  image: "./assets/meu-projeto.jpg",
-  summary: "Resumo curto.",
-  stack: ["HTML", "CSS", "JavaScript"],
-  role: "O que você fez.",
-  challenge: "Qual problema resolveu.",
-  result: "Resultado e aprendizado."
-}
+```jsx
+<img src="/profile-placeholder.svg" ... />
 ```
 
-Categorias disponíveis atualmente:
+por:
 
-- `frontend`
-- `javascript`
-- `creative`
-
-Você pode adicionar quantos projetos quiser.
-
-### O que colocar em cada case study
-
-Prefira mostrar processo, e não apenas screenshot:
-
-1. contexto;
-2. problema;
-3. seu papel;
-4. decisões importantes;
-5. restrições;
-6. implementação;
-7. responsividade e acessibilidade;
-8. resultado;
-9. o que faria diferente hoje.
-
-## 3. Adicionar GitHub e LinkedIn
-
-No `index.html`, procure:
-
-```html
-data-placeholder-link="linkedin"
-data-placeholder-link="github"
+```jsx
+<img src="/profile.jpg" alt="Pedro Luís Bezerra Lima" loading="lazy" />
 ```
 
-Remova `data-placeholder-link` e substitua `href="#"` pelas URLs reais.
+Use preferencialmente WebP ou AVIF, com dimensão aproximada de 900×1100 e arquivo otimizado.
+
+## Adicionar screenshots de projetos
+
+Os cards foram deixados com placeholders de propósito. Você pode substituir o conteúdo de `.project-card__visual` em `ProjectCard.jsx` por uma imagem.
 
 Exemplo:
 
-```html
-<a href="https://github.com/SEU-USUARIO" target="_blank" rel="noreferrer">GitHub</a>
+```jsx
+<img
+  src="/projects/efraim.webp"
+  alt="Tela inicial do projeto Efraim Paiva"
+  loading="lazy"
+/>
 ```
 
-## 4. Adicionar currículo em PDF
-
-Coloque o arquivo em:
+Crie uma pasta:
 
 ```text
-assets/curriculo-pedro.pdf
+public/projects/
 ```
 
-Depois substitua o link placeholder por:
+## Adicionar trabalhos criativos
 
-```html
-<a href="./assets/curriculo-pedro.pdf" download>Currículo PDF</a>
-```
+A seção `Arquivo criativo` foi deixada pronta para:
 
-> O número de telefone e o endereço completo presentes no currículo original **não foram publicados no site por padrão**, para evitar exposição desnecessária de dados pessoais. Você pode adicioná-los conscientemente se quiser.
-
-## 5. Adicionar trabalhos criativos
-
-A seção **O que alimenta meu olhar** foi deixada propositalmente como base para:
-
-- ilustrações digitais;
-- desenhos feitos à mão;
-- motion design;
-- edição de vídeo;
+- ilustração digital;
+- desenho tradicional;
 - fotografia;
-- frames de animação;
-- making-of e processo.
+- edição de vídeo;
+- motion design;
+- animação;
+- processos e bastidores.
 
-Troque os blocos `.contact-frame__media` por `<img>`, `<video>` ou thumbnails próprias.
+Troque os placeholders em `src/App.jsx` por `<img>` ou `<video>`.
 
-## Competências representadas no site
+## GitHub
 
-Com base no material de progresso fornecido:
+O componente `GithubPulse` busca os repositórios mais recentes de:
 
-- fundamentos do desenvolvimento web;
-- HTML5 semântico e acessível;
-- CSS3;
-- JavaScript: variáveis, tipos, operadores, funções e debugging;
-- algoritmos, pseudocódigo, fluxogramas, condicionais, loops e arrays;
-- POO: classes, construtor, encapsulamento, herança e polimorfismo;
-- DOM, `getElementById`, `querySelector`, eventos e `preventDefault`;
-- Fetch API, Promises, Web Storage (`localStorage` e `sessionStorage`);
-- HTTP/HTTPS e ciclo de requisição;
-- JavaScript moderno: `let`, `const`, arrow functions, Promises, async/await, funções de alta ordem e imutabilidade;
-- Git/GitHub: branches, commits, push, merge conflicts e Pull Requests;
-- responsividade, media queries, unidades relativas, Flexbox e CSS Grid;
-- BEM;
-- Sass: Node/NPM, variáveis, nesting, partials, `@use`, mixins e herança;
-- Bootstrap: Grid System, componentes, customização Sass e CDN;
-- Tailwind CSS: instalação/NPM/CLI, utility classes, breakpoints e mobile first.
+```text
+https://github.com/Prediin
+```
 
-## Conteúdo profissional usado
+pela API pública do GitHub. Se a API falhar ou o limite de requisições for atingido, o site usa uma lista local de fallback e continua funcionando.
 
-- Nome: Pedro Luís Bezerra Lima.
-- Técnico em Informática.
-- Em formação em Desenvolvimento Front-End pela EBAC — progresso informado: 44%.
-- Experiência World Cel (2025): atendimento, suporte técnico, venda e audiovisual.
-- Minicurso de Cyber Segurança (2024): ministrante e organizador.
-- Ensino Médio integrado ao Técnico em Informática — Unidade Escolar Dr. Dionísio Rodrigues Nogueira (2024).
-- Base: Parnaguá, Piauí, Brasil.
-- Idiomas: Português nativo, Inglês médio-avançado e Espanhol médio.
-- Contato publicado: `daxstudios.comissions@gmail.com`.
+## Direção visual
+
+A identidade evita o visual genérico de "template de dev" e mistura:
+
+- base grafite/preta;
+- branco quente;
+- azul elétrico;
+- coral;
+- verde-mint;
+- grids editoriais;
+- composição inspirada em motion, fotografia e interfaces experimentais.
+
+A intenção é manter personalidade sem prejudicar recrutadores: projetos, competências, trajetória e contato continuam fáceis de encontrar.
+
+## Acessibilidade e performance
+
+- HTML semântico dentro dos componentes React;
+- navegação por teclado;
+- skip link;
+- estados de foco nativos;
+- `prefers-reduced-motion`;
+- sem biblioteca externa de animação;
+- Canvas limitado a DPR 2;
+- imagens próprias podem usar lazy loading;
+- dependências de runtime: apenas React e React DOM.
 
 ## Deploy
 
-Por ser um site estático, pode ser publicado facilmente em:
+Funciona bem em:
 
-- GitHub Pages;
-- Netlify;
 - Vercel;
-- Cloudflare Pages.
+- Netlify;
+- Cloudflare Pages;
+- GitHub Pages (com configuração de `base` no Vite, se necessário).
 
-O arquivo `server.mjs` serve apenas para desenvolvimento local.
-
-## Estrutura
+Para Vercel/Netlify, normalmente basta conectar o repositório e usar:
 
 ```text
-pedro-portfolio/
-├── index.html
-├── styles.css
-├── package.json
-├── server.mjs
-├── README.md
-├── assets/
-│   ├── favicon.svg
-│   ├── profile-placeholder.svg
-│   └── project-01.svg ... project-06.svg
-└── js/
-    └── main.js
+Build command: npm run build
+Output directory: dist
 ```
