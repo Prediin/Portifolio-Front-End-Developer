@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100">
+  <rect width="900" height="1100" fill="#12161c"/>
+  <path d="M0 190h900M0 380h900M0 570h900M0 760h900M0 950h900M180 0v1100M360 0v1100M540 0v1100M720 0v1100" stroke="#26303b" stroke-width="2"/>
+  <circle cx="450" cy="430" r="165" fill="#202833"/>
+  <path d="M210 1010c28-218 110-338 240-338s212 120 240 338" fill="#202833"/>
+  <circle cx="725" cy="160" r="85" fill="#5b7cff" opacity=".7"/>
+  <rect x="88" y="88" width="280" height="50" fill="#79f2c0"/>
+  <text x="105" y="123" fill="#0b0d10" font-family="Arial, sans-serif" font-size="26" font-weight="700">SUA FOTO AQUI</text>
+  <text x="90" y="1050" fill="#7f8b99" font-family="Arial, sans-serif" font-size="24">Troque /public/profile-placeholder.svg por uma foto sua.</text>
+</svg>
