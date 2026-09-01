@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0b0d10"/>
-  <circle cx="980" cy="120" r="210" fill="#5b7cff" opacity=".22"/>
-  <circle cx="1040" cy="500" r="260" fill="#ff6b57" opacity=".14"/>
-  <path d="M90 140h520v6H90zM90 505h710v2H90z" fill="#79f2c0"/>
-  <text x="90" y="260" fill="#f4f1e8" font-family="Arial, sans-serif" font-size="86" font-weight="700">PEDRO LUÍS</text>
-  <text x="90" y="340" fill="#f4f1e8" font-family="Arial, sans-serif" font-size="42">FRONT-END × CREATIVE TECHNOLOGY</text>
-  <text x="90" y="430" fill="#9aa3b2" font-family="Arial, sans-serif" font-size="28">React • JavaScript • Interfaces responsivas • Design</text>
-</svg>
