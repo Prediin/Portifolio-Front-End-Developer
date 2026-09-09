@@ -1,88 +1,162 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { profile } from '../data/portfolio.js'
-
-const initialForm = {
-  name: '',
-  company: '',
-  project: 'Site / Landing Page',
-  budget: '',
-  deadline: '',
-  message: '',
-}
-
 export default function Contact() {
-  const [form, setForm] = useState(initialForm)
-
-  const message = useMemo(() => [
-    `Olá, Pedro! Meu nome é ${form.name || '___'}.`,
-    form.company ? `Empresa/projeto: ${form.company}` : '',
-    `Tipo de projeto: ${form.project}`,
-    `Orçamento/faixa: ${form.budget || 'a combinar'}`,
-    `Prazo: ${form.deadline || 'a combinar'}`,
-    '',
-    'Sobre o projeto:',
-    form.message || 'Quero conversar sobre um projeto Front-End.',
-  ].filter(Boolean).join('\n'), [form])
-
-  const whatsappHref = useMemo(
-    () => `https://wa.me/${profile.whatsappNumber}?text=${encodeURIComponent(message)}`,
-    [message],
-  )
-
-  const gmailHref = useMemo(() => {
-    const subject = `Projeto Front-End — ${form.name || 'novo contato'}`
-    return `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`
-  }, [form.name, message])
-
-  function updateField(event) {
-    const { name, value } = event.target
-    setForm((current) => ({ ...current, [name]: value }))
+  const [form, setForm] = useState({
+    name: '',
+    company: '',
+    type: 'Oportunidade de trabalho',
+    message: '',
+  })
+  const [copied, setCopied] = useState('')
+  const [channel, setChannel] = useState('whatsapp')
+  const message = `Olá, Pedro! Meu nome é ${form.name}.\n${form.company ? `Empresa: ${form.company}\n` : ''}Assunto: ${form.type}\n\n${form.message}`
+  function update(event) {
+    setForm((current) => ({ ...current, [event.target.name]: event.target.value }))
   }
-
+  function submit(event) {
+    event.preventDefault()
+    const href =
+      channel === 'whatsapp'
+        ? `https://wa.me/${profile.whatsappNumber}?text=${encodeURIComponent(message)}`
+        : `mailto:${profile.email}?subject=${encodeURIComponent(form.type)}&body=${encodeURIComponent(message)}`
+    if (channel === 'whatsapp') window.open(href, '_blank', 'noopener,noreferrer')
+    else window.location.href = href
+  }
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(profile.email)
+      setCopied('E-mail copiado!')
+    } catch {
+      setCopied('Não foi possível copiar. Use o link de e-mail abaixo.')
+    }
+  }
   return (
-    <section className="contact" id="contato">
-      <div className="shell contact__grid">
-        <div className="contact__copy motion-reveal">
-          <p className="eyebrow eyebrow--light"><span>07</span> contato</p>
-          <h2>Tem uma ideia?<br />Eu posso transformar em interface.</h2>
-          <p>Me conte o que você precisa, o prazo e o tipo de projeto. Os botões montam a mensagem com as informações do formulário sem enviar dados para servidor algum.</p>
-
-          <div className="contact__links">
-            <a href={profile.linkedin} target="_blank" rel="noreferrer"><span>LinkedIn</span><strong>pedro-bezerra-775390263</strong><i>↗</i></a>
-            <a href={profile.github} target="_blank" rel="noreferrer"><span>GitHub</span><strong>@Prediin</strong><i>↗</i></a>
-            <a href={`mailto:${profile.email}`}><span>E-mail</span><strong>{profile.email}</strong><i>↗</i></a>
-          </div>
+    <section className="contact section" id="contato">
+      <div className="shell">
+        <div className="contact-banner">
+          <span className="eyebrow">
+            <i className="status-dot" /> ABERTO A NOVAS CONEXÕES
+          </span>
+          <span aria-hidden="true">↙</span>
         </div>
-
-        <form className="contact-form motion-reveal" onSubmit={(event) => event.preventDefault()}>
-          <div className="form-grid">
-            <label><span>Seu nome</span><input name="name" value={form.name} onChange={updateField} placeholder="Como posso te chamar?" /></label>
-            <label><span>Empresa / projeto</span><input name="company" value={form.company} onChange={updateField} placeholder="Opcional" /></label>
+        <div className="contact__grid">
+          <div className="contact__copy">
+            <h2>
+              Seu próximo
+              <br />
+              projeto pode
+              <br />
+              começar com
+              <br />
+              <em>um olá.</em>
+            </h2>
+            <p>
+              Uma vaga no time, uma ideia no papel ou um projeto precisando de cuidado. Vamos
+              conversar?
+            </p>
+            <div className="contact__links">
+              <a href={`mailto:${profile.email}`}>
+                {profile.email} <span>↗</span>
+              </a>
+              <button onClick={copy}>
+                Copiar e-mail <span>⧉</span>
+              </button>
+              <span role="status">{copied}</span>
+            </div>
+            <div className="social-links">
+              <a href={profile.github} target="_blank" rel="noreferrer">
+                GitHub ↗
+              </a>
+              <a href={profile.linkedin} target="_blank" rel="noreferrer">
+                LinkedIn ↗
+              </a>
+              <a href={`https://wa.me/${profile.whatsappNumber}`} target="_blank" rel="noreferrer">
+                WhatsApp ↗
+              </a>
+            </div>
           </div>
-
-          <div className="form-grid">
+          <form className="contact-form" onSubmit={submit}>
+            <h3>Vamos construir algo juntos.</h3>
+            <p>Me conte um pouco sobre o que você tem em mente.</p>
+            <div className="form-grid">
+              <label>
+                <span>Seu nome *</span>
+                <input
+                  required
+                  autoComplete="name"
+                  maxLength="100"
+                  name="name"
+                  value={form.name}
+                  onChange={update}
+                  placeholder="Como posso te chamar?"
+                />
+              </label>
+              <label>
+                <span>Empresa</span>
+                <input
+                  autoComplete="organization"
+                  maxLength="120"
+                  name="company"
+                  value={form.company}
+                  onChange={update}
+                  placeholder="Opcional"
+                />
+              </label>
+            </div>
             <label>
-              <span>Tipo de projeto</span>
-              <select name="project" value={form.project} onChange={updateField}>
-                <option>Site / Landing Page</option>
-                <option>SPA em React</option>
-                <option>Portfólio profissional</option>
-                <option>Refatoração Front-End</option>
-                <option>Outro projeto</option>
+              <span>Sobre o que vamos conversar?</span>
+              <select name="type" value={form.type} onChange={update}>
+                <option>Oportunidade de trabalho</option>
+                <option>Projeto freelance</option>
+                <option>Parceria</option>
+                <option>Outro assunto</option>
               </select>
             </label>
-            <label><span>Orçamento</span><input name="budget" value={form.budget} onChange={updateField} placeholder="Ex.: R$ 800–1.200" /></label>
-          </div>
-
-          <label><span>Prazo</span><input name="deadline" value={form.deadline} onChange={updateField} placeholder="Ex.: preciso para o dia 20" /></label>
-          <label><span>Sobre o projeto</span><textarea name="message" value={form.message} onChange={updateField} rows="5" placeholder="Objetivo, páginas, referências, funcionalidades..." /></label>
-
-          <div className="contact-form__actions">
-            <a className="button button--primary" href={whatsappHref} target="_blank" rel="noreferrer">Enviar no WhatsApp</a>
-            <a className="button button--ghost-light" href={gmailHref} target="_blank" rel="noreferrer">Abrir Gmail ↗</a>
-          </div>
-          <small>Sem backend e sem coleta de dados: os links são montados localmente no navegador.</small>
-        </form>
+            <label>
+              <span>Sua mensagem *</span>
+              <textarea
+                required
+                maxLength="3000"
+                name="message"
+                rows="5"
+                value={form.message}
+                onChange={update}
+                placeholder="Sobre a oportunidade, a ideia ou o desafio..."
+              />
+            </label>
+            <fieldset className="channel-select">
+              <legend>Continuar por</legend>
+              <label>
+                <input
+                  type="radio"
+                  name="channel"
+                  value="whatsapp"
+                  checked={channel === 'whatsapp'}
+                  onChange={() => setChannel('whatsapp')}
+                />{' '}
+                WhatsApp
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="channel"
+                  value="email"
+                  checked={channel === 'email'}
+                  onChange={() => setChannel('email')}
+                />{' '}
+                E-mail
+              </label>
+            </fieldset>
+            <button className="button button--primary" type="submit">
+              Preparar mensagem <span>↗</span>
+            </button>
+            <small>
+              Você revisa e envia a mensagem no{' '}
+              {channel === 'whatsapp' ? 'WhatsApp' : 'seu aplicativo de e-mail'}. Nada é enviado
+              automaticamente.
+            </small>
+          </form>
+        </div>
       </div>
     </section>
   )

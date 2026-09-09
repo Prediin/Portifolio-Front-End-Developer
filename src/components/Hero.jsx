@@ -1,84 +1,63 @@
-import { profile, stack, stats } from '../data/portfolio.js'
-
-const logo = `${import.meta.env.BASE_URL}brand-logo.png`
-
+import { profile, projects } from '../data/portfolio.js'
+import CreativeStudio from './CreativeStudio.jsx'
 export default function Hero() {
   return (
-    <section className="hero" id="top">
-      <div className="shell hero__grid">
-        <div className="hero__copy motion-reveal">
-          <p className="eyebrow"><span>01</span> front-end / interface / experiência</p>
-          <h1>
-            Interfaces que parecem simples
-            <span> porque o trabalho difícil ficou no código.</span>
-          </h1>
-          <p className="hero__lead">{profile.intro}</p>
-
-          <div className="hero__actions">
-            <a className="button button--primary" href="#projetos">Ver projetos</a>
-            <a className="button button--ghost" href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          </div>
-
-          <div className="availability">
-            <i aria-hidden="true" />
-            <span>{profile.availability}</span>
-          </div>
+    <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="shell">
+        <div className="hero__topline">
+          <span>
+            <i className="status-dot" /> Disponível para oportunidades
+          </span>
+          <span>{profile.location} ↗</span>
         </div>
-
-        <div className="hero__visual motion-reveal tilt-card" aria-label="Composição visual inspirada em um ambiente de desenvolvimento">
-          <div className="dev-window">
-            <div className="dev-window__bar">
-              <div className="window-dots" aria-hidden="true"><i /><i /><i /></div>
-              <span>portfolio.jsx</span>
-              <small>localhost:5173</small>
+        <div className="hero__grid">
+          <div className="hero__copy">
+            <p className="eyebrow">
+              <span className="hud-tag">OLÁ, MUNDO.</span> EU SOU PEDRO LUIS
+            </p>
+            <h1 id="hero-title">
+              Código na cabeça.
+              <br />
+              <span className="hero-handwritten">Criatividade</span>
+              <br />
+              em cada clique<span className="hero-period">.</span>
+            </h1>
+            <p className="hero__lead">
+              Sou desenvolvedor Front-End e gosto de dar <strong>personalidade às ideias.</strong>{' '}
+              Transformo design e código em experiências que funcionam bem — e fazem você querer
+              explorar.
+            </p>
+            <div className="hero__actions">
+              <a className="button button--primary" href="#projetos">
+                Explore meus projetos <span>↗</span>
+              </a>
+              <a className="hero-about-link" href="#experiencia">
+                Conheça quem cria <span>↓</span>
+              </a>
             </div>
-
-            <div className="dev-window__body">
-              <div className="code-pane" aria-hidden="true">
-                <div><b>01</b><span className="code-purple">const</span> <span className="code-blue">developer</span> = {'{'}</div>
-                <div><b>02</b>&nbsp;&nbsp;name: <span className="code-gold">'Pedro Luis'</span>,</div>
-                <div><b>03</b>&nbsp;&nbsp;focus: <span className="code-gold">'Front-End'</span>,</div>
-                <div><b>04</b>&nbsp;&nbsp;stack: [<span className="code-gold">'React'</span>, <span className="code-gold">'JS'</span>],</div>
-                <div><b>05</b>&nbsp;&nbsp;detail: <span className="code-red">true</span>,</div>
-                <div><b>06</b>&nbsp;&nbsp;responsive: <span className="code-red">true</span></div>
-                <div><b>07</b>{'}'}</div>
-              </div>
-
-              <div className="ui-pane">
-                <div className="ui-pane__brand"><img src={logo} alt="" /><span>PL / BUILD</span></div>
-                <div className="ui-card">
-                  <small>COMPONENT_01</small>
-                  <strong>Interface pronta para pessoas, não só para telas.</strong>
-                  <div className="ui-lines"><i /><i /><i /></div>
-                </div>
-                <div className="ui-pulse" aria-hidden="true"><span /><span /><span /><span /></div>
-              </div>
-            </div>
-
-            <div className="dev-window__footer">
-              <span>✓ build</span>
-              <span>✓ responsive</span>
-              <span>✓ deployed</span>
+            <div className="hero__signature">
+              <span /> REACT · JAVASCRIPT · UM OLHAR CRIATIVO
             </div>
           </div>
+          <CreativeStudio />
+        </div>
+        <div className="hero__bottom">
+          <p>
+            <strong>{String(projects.length).padStart(2, '0')}</strong> projetos publicados{' '}
+            <span className="hero__divider" /> Cada um, um universo para explorar.
+          </p>
+          <a href="#projetos">
+            BORA DESCOBRIR <span>↓</span>
+          </a>
         </div>
       </div>
-
-      <div className="shell hero__stats motion-reveal">
-        {stats.map((stat) => (
-          <div key={stat.label}>
-            <strong>{stat.value}</strong>
-            <span>{stat.label}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker__track">
-          {[0, 1].map((group) => (
-            <div className="ticker__group" key={group}>
-              {stack.map((item) => <span key={`${group}-${item}`}>{item}<i>◆</i></span>)}
-            </div>
+      <div className="stack-strip">
+        <div className="shell">
+          {['React', 'JavaScript', 'HTML & CSS', 'Sass', 'Git & GitHub', 'Vite'].map((item) => (
+            <span key={item}>
+              <i aria-hidden="true">✳</i>
+              {item}
+            </span>
           ))}
         </div>
       </div>

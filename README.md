@@ -1,93 +1,97 @@
 # Pedro Luis — Front-End Portfolio
 
-SPA React + Vite criada para apresentar projetos, formação, experiência e serviços de Front-End de forma responsiva e fácil de manter.
+Portfólio em React e Vite com identidade visual própria: temas claro e escuro, tipografia editorial, um estúdio de interfaces interativo e uma apresentação pessoal com a foto do currículo. Apresenta os projetos publicados, a formação e a trajetória profissional de Pedro Luis.
 
-## Rodar localmente
+## Desenvolvimento
+
+Requer Node.js 22.12+ ou 24+.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Build de produção:
+## Build e validação
 
 ```bash
 npm run build
-npm run preview
+npx playwright install chromium
+npm test
+npm run format:check
 ```
 
-## Conteúdo editável
+Os testes usam o build de produção e iniciam o preview automaticamente na porta 4173. Cobrem filtros, seleção e carregamento sob demanda de projetos, navegação por teclado, menu mobile, formulário, responsividade e verificação automática WCAG A/AA com axe. O conteúdo externo é substituído por uma página de teste; a disponibilidade dos sites publicados depende dos respectivos provedores.
 
-Quase todas as informações pessoais e profissionais ficam em:
+Para testar com Microsoft Edge já instalado no Windows:
 
-```text
-src/data/portfolio.js
+```powershell
+$env:PLAYWRIGHT_CHANNEL = 'msedge'
+npm test
 ```
 
-Lá você pode atualizar:
+## Experiência
 
-- nome, descrição e contatos;
-- links do GitHub e LinkedIn;
-- tecnologias;
-- serviços;
-- projetos publicados;
-- andamento da EBAC;
-- competência e habilidades;
-- experiências e formação.
+- Galeria com filtros e detalhes técnicos expansíveis.
+- Playground com seleção sincronizada à galeria, abas acessíveis e visualização desktop/mobile.
+- Nenhum site externo é carregado antes de iniciar a demonstração.
+- Menu responsivo com Escape, fechamento ao navegar e indicação da seção ativa.
+- Trilha EBAC completa disponível em um painel expansível.
+- Formulário para vagas, freelas e parcerias, com campos obrigatórios.
+- O formulário prepara a mensagem no WhatsApp ou aplicativo de e-mail; o visitante revisa e envia. Não há backend de contato.
+- Cópia de e-mail com confirmação e alternativa em caso de indisponibilidade do clipboard.
+- Link para pular ao conteúdo, foco visível e respeito a movimento reduzido.
+- Metadados sociais, imagem de compartilhamento local e favicon SVG.
 
-### Adicionar projeto
+## Personalização
 
-Dentro de `projects`, duplique um objeto:
+As informações profissionais, projetos, formação, serviços e contatos estão em `src/data/portfolio.js`. Textos de apresentação e navegação ficam nos respectivos componentes em `src/components/`. Os tokens de cor, espaçamento e layout estão no início de `src/styles.css`.
 
-```js
-{
-  id: 'novo-projeto',
-  index: '04',
-  title: 'Nome do Projeto',
-  type: 'SPA / Categoria',
-  year: '2026',
-  url: 'https://usuario.github.io/repositorio/',
-  preview: 'game',
-  accent: 'blue',
-  featured: true,
-  summary: 'Resumo curto.',
-  details: 'Descrição para o Live Lab.',
-  tags: ['React', 'Vite']
-}
+Para adicionar um projeto, inclua um objeto em `projects` com `id`, `index`, `title`, `type`, `year`, `url`, `preview`, `accent`, `summary`, `details` e `tags`. As categorias atuais distinguem o preview `game` dos portfólios. Ajuste o filtro em `Projects.jsx` ao criar novas categorias.
+
+As artes de `ProjectPreview.jsx` representam a direção visual de cada projeto; não são capturas de tela. A demonstração permite abrir o site real.
+
+Para atualizar a imagem social após alterar nome ou identidade, edite `scripts/social-cover.mjs` e execute:
+
+```bash
+node scripts/social-cover.mjs
 ```
 
-Os previews existentes são `discography`, `editor` e `game`. Se adicionar um novo projeto e não criar outro preview visual, use um deles como placeholder ou crie uma nova condição em `src/components/ProjectPreview.jsx`.
+Esse comando precisa do Chromium do Playwright instalado (ou de `PLAYWRIGHT_CHANNEL=msedge`). Ao mudar o endereço público, atualize também o canonical e as URLs Open Graph em `index.html`.
 
-## Live Lab
+## Publicação
 
-A seção `LiveLab.jsx` não carrega os três sites imediatamente. Apenas o projeto selecionado é carregado em `iframe` depois que o visitante clica em **Carregar site ao vivo**. Isso reduz requisições e custo de renderização na abertura do portfólio.
+O workflow `.github/workflows/deploy.yml` publica no GitHub Pages ao receber um push em `main` ou `master`. Configure **Settings → Pages → Source → GitHub Actions**. O Vite usa `base: './'` para suportar o subdiretório do repositório. Alterações locais só aparecem publicamente após o push e a conclusão do workflow.
 
-## GitHub Pages
+## Organização
 
-O projeto contém:
+- `src/components/`: seções e elementos da interface.
+- `src/data/portfolio.js`: informações profissionais.
+- `public/`: foto, favicon e imagem social.
+- `tests/portfolio.spec.js`: testes de comportamento e acessibilidade.
+- `scripts/social-cover.mjs`: geração reproduzível da imagem social.
 
-```text
-.github/workflows/deploy.yml
-```
+Use `npm run format` para formatar o código. Os testes automáticos de acessibilidade complementam a revisão visual e não substituem avaliação com tecnologias assistivas.
 
-No GitHub:
+## Temas e interações
 
-1. Abra **Settings > Pages**.
-2. Em **Build and deployment > Source**, escolha **GitHub Actions**.
-3. Faça push para `main` ou `master`.
-4. Aguarde o workflow finalizar com sucesso.
+A logo original em `public/brand-logo.png` é compartilhada pelo favicon, cabeçalho e rodapé. O navegador reutiliza o mesmo arquivo em cache.
 
-O Vite usa `base: './'`, deixando os assets portáveis para um Project Page como `usuario.github.io/nome-do-repositorio/`.
+O visual inspirado em jogos está em `src/game.css`: painel de personagem, contornos de interface, grade de fundo, resposta ao clique e progresso de exploração. O indicador conta as seis seções realmente visitadas nesta sessão; não representa experiência profissional ou conclusão da formação e não bloqueia nenhum conteúdo.
 
-## Identidade visual
+Os botões no cabeçalho alternam o tema claro/escuro e pausam as animações. A primeira visita segue o tema do sistema. Escolhas explícitas ficam em `localStorage` (`pl-theme` e `pl-motion`), com funcionamento normal caso o armazenamento esteja indisponível. Um script pequeno aplica o tema antes da primeira pintura para evitar flashes.
 
-A paleta acompanha a identidade do portfólio de editor:
+As animações usam CSS com transformações e opacidade. `IntersectionObserver` controla a visibilidade sem trabalho contínuo a cada evento de rolagem. A animação do painel para fora da tela; todas as animações pausam quando a aba fica oculta. `prefers-reduced-motion` sempre prevalece. Nenhum motor de jogos, canvas ou pacote de animação foi adicionado.
 
-- `#223843`
-- `#ECA400`
-- `#E84855`
-- `#78C0E0`
-- `#E9F1F7`
-- preto e branco
+## Repaginação criativa
 
-As animações são CSS + `IntersectionObserver`, sem biblioteca externa de motion. O site respeita `prefers-reduced-motion`.
+A abertura em `CreativeStudio.jsx` permite escolher cores, arredondar os cantos, conferir o CSS correspondente e disparar uma pequena resposta visual. Todas as ações estão disponíveis por teclado e toque. O efeito usa dez partículas CSS reutilizadas a cada clique, sem motor de física, biblioteca extra ou acúmulo de elementos. As camadas visuais mais recentes ficam em `src/creative.css`.
+
+A seção “Sobre mim” usa `public/pedro-luis-retrato.jpeg`, foto extraída diretamente do currículo fornecido, sem alterações no arquivo. Somente a foto foi adicionada aos assets públicos; o DOCX não foi publicado. Os textos de apresentação se baseiam na formação técnica e nas experiências com atendimento, audiovisual e segurança digital.
+
+Referências consultadas em 8 de setembro de 2026:
+
+- [Bruno Simon](https://bruno-simon.com/): exploração lúdica e descoberta de detalhes.
+- [Josh W. Comeau — A Million Little Secrets](https://www.joshwcomeau.com/blog/whimsical-animations/): pequenas interações que respondem à curiosidade do visitante.
+- [Brittany Chiang](https://brittanychiang.com/): apresentação pessoal e leitura clara da trajetória profissional.
+
+Esses princípios inspiraram uma composição original. Nenhum código, imagem, biografia ou elemento de marca desses sites foi incorporado ao projeto.

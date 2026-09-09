@@ -17,20 +17,27 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <main style={{
-          minHeight: '100vh',
-          display: 'grid',
-          placeItems: 'center',
-          padding: '24px',
-          background: '#05080c',
-          color: '#E9F1F7',
-          fontFamily: 'Inter, system-ui, sans-serif',
-        }}>
+        <main
+          style={{
+            minHeight: '100vh',
+            display: 'grid',
+            placeItems: 'center',
+            padding: '24px',
+            background: '#05080c',
+            color: '#E9F1F7',
+            fontFamily: 'Inter, system-ui, sans-serif',
+          }}
+        >
           <section style={{ maxWidth: '620px' }}>
-            <small style={{ color: '#E84855', fontWeight: 900, letterSpacing: '.12em' }}>ERRO DE INTERFACE</small>
-            <h1 style={{ margin: '12px 0', fontSize: 'clamp(34px, 6vw, 64px)' }}>O portfólio não conseguiu carregar.</h1>
+            <small style={{ color: '#E84855', fontWeight: 900, letterSpacing: '.12em' }}>
+              ERRO DE INTERFACE
+            </small>
+            <h1 style={{ margin: '12px 0', fontSize: 'clamp(34px, 6vw, 64px)' }}>
+              O portfólio não conseguiu carregar.
+            </h1>
             <p style={{ color: '#9fb2bc', lineHeight: 1.7 }}>
-              Recarregue a página. Se o problema continuar, abra o console do navegador para ver o erro técnico.
+              Recarregue a página. Se o problema continuar, abra o console do navegador para ver o
+              erro técnico.
             </p>
             <button
               type="button"
